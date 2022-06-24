@@ -8,6 +8,8 @@ pipeline {
   stages {
     stage('Build Container') {
       steps {
+        sh "npm install --silent"
+        sh "npm run build"
         sh "docker build -f DockerFile -t ${dockerImageTag} ."
       }
     }

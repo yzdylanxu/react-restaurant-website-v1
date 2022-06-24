@@ -2,15 +2,11 @@
 FROM node:16.15-alpine
 
 # add app
-COPY src ./src
-COPY public ./public
+COPY build ./build
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
+RUN yarn global add serve
 
 EXPOSE 3000
 
 # start app
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["serve", "-s", "build"]
